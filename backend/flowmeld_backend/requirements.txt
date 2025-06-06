@@ -1,0 +1,32 @@
+# flowmeld-backend/requirements.txt
+
+# Core Django and DRF
+Django~=5.0.0      # Use a specific major version, e.g., 5.0.x
+djangorestframework~=3.15.0 # Use a specific major version, e.g., 3.15.x
+
+# Database connector for PostgreSQL
+psycopg2-binary~=2.9.0 # Binary package for easier installation
+
+# Environment variable management
+python-dotenv~=1.0.0
+
+# AI API Clients
+google-generativeai~=0.6.0 # For Google Gemini API
+requests~=2.32.0          # General HTTP client, often used for other APIs like Deepseek if no dedicated client
+
+# Asynchronous Tasks (for later phases, but good to include early for consistency)
+celery~=5.4.0
+redis~=5.0.0              # For Celery broker and caching
+
+# Real-time communication (if using Django Channels for chat)
+channels~=4.0.0
+channels_redis~=4.2.0
+
+# Security and Utility
+Pillow~=10.3.0            # Common image processing library if users upload avatars/content
+django-cors-headers~=4.3.0 # For Cross-Origin Resource Sharing (CORS) - crucial for frontend-backend communication
+
+# (Optional, for development/testing)
+# ipython             # Enhanced Python shell
+# factory-boy         # For creating test data
+# django-debug-toolbar # For debugging during development
