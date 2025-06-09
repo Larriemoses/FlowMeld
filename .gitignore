@@ -1,0 +1,26 @@
+# Sensitive files and environment variables
+api_keys.txt
+secret.key
+.env
+
+# Optional: Common files to ignore (you might already have some of these)
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Python bytecode and virtual environments
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Editor specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and temporary files
+*.log
+tmp/
