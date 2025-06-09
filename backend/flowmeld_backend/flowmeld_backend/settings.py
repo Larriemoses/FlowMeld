@@ -193,3 +193,7 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+# Redirect URLs after login/logout (for Django's default auth views)
+LOGIN_REDIRECT_URL = '/api/' # Redirect to the API root after login
+LOGOUT_REDIRECT_URL = '/'    # Redirect to the site root after logout (or login page)
