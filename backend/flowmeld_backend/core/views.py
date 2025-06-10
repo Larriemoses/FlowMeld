@@ -2,14 +2,14 @@ from rest_framework import viewsets, permissions, serializers # <--- Make sure '
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
-
+from rest_framework.views import APIView # <--- Import APIView
 from .models import Persona, Task
 from .serializers import PersonaSerializer, TaskSerializer, UserSerializer # These are YOUR serializers
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from .services.ai_service import generate_persona_details 
 from django.views.decorators.csrf import csrf_exempt # <--- Add this import!
-
+from .serializers import UserSerializer
 from .services.ai_service import generate_daily_plan
 
 
@@ -156,3 +156,14 @@ def get_daily_suggestions(request):
     ai_plan = generate_daily_plan(persona_summary, personality_traits, tasks_data)
 
     return Response(ai_plan, status=status.HTTP_200_OK)
+
+
+class CurrentUserView(APIView):
+    permission_classes = [permissions.IsAuthenticated] # Only authenticated users can access
+
+    def get(self, request):
+        """
+        Returns the current authenticated user's details.
+        """
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 // Remove the getCookie helper function from here as it's no longer needed for JWT login
 // function getCookie(name: string) { ... }
@@ -11,6 +12,7 @@ const LoginPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { login } = useAuth(); //
 
   // Remove the useEffect for CSRF token fetching as it's no longer needed with JWT
   useEffect(() => {
@@ -45,13 +47,10 @@ const LoginPage: React.FC = () => {
         },
       });
 
-      if (response.status === 200) {
+    if (response.status === 200) {
         console.log('Login successful! JWT tokens received:', response.data);
-        // --- Store JWT Tokens ---
-        localStorage.setItem('access_token', response.data.access);
-        localStorage.setItem('refresh_token', response.data.refresh);
-
-        navigate('/dashboard'); // Redirect to dashboard
+        login(response.data.access, response.data.refresh); // <--- Use context's login function
+        navigate('/dashboard'); // Redirect to dashboard/ Redirect to dashboard
       }
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
@@ -69,7 +68,7 @@ const LoginPage: React.FC = () => {
   };
 
 
-  
+
   return (
     <div className="min-h-screen flex bg-slate-950"> {/* Main flex container, overall deep dark background */}
 
@@ -85,14 +84,7 @@ const LoginPage: React.FC = () => {
         {/* Semi-transparent Overlay for Contrast */}
         <div className="absolute inset-0 bg-slate-950 opacity-70"></div> {/* Adjust opacity as needed */}
 
-        {/* Branding/Marketing Text (positioned above overlay) */}
-        <div className="relative z-10 text-center p-8">
-          <h1 className="text-6xl font-extrabold text-cyan-400 mb-4">FlowMeld</h1>
-          <p className="text-neutral-100 text-2xl max-w-md mx-auto leading-relaxed">
-            Your AI-Powered Life, Team, and Content Orchestrator. <br/> Streamline your world.
-          </p>
-          {/* Optional: Add more compelling marketing points or a small illustration here */}
-        </div>
+    
       </div>
 
       {/* Right Column - Form Card (Full width on mobile, 50% on desktop) */}

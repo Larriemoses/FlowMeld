@@ -88,14 +88,7 @@ const RegisterPage: React.FC = () => {
         {/* Semi-transparent Overlay for Contrast */}
         <div className="absolute inset-0 bg-slate-950 opacity-70"></div> {/* Adjust opacity as needed */}
 
-        {/* Branding/Marketing Text (positioned above overlay) */}
-        <div className="relative z-10 text-center p-8">
-          <h1 className="text-6xl font-extrabold text-cyan-400 mb-4">FlowMeld</h1>
-          <p className="text-neutral-100 text-2xl max-w-md mx-auto leading-relaxed">
-            Unlock unparalleled productivity and seamless organization with AI.
-          </p>
-          {/* Optional: Add more compelling marketing points or a small illustration here */}
-        </div>
+  
       </div>
 
       {/* Right Column - Form Card (Full width on mobile, 50% on desktop) */}

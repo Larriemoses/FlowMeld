@@ -20,4 +20,5 @@ urlpatterns = [
     # This provides DRF's default login/logout views for the browsable API.
     path('auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('daily-suggestions/', views.get_daily_suggestions, name='daily_suggestions'), 
+    path('user/me/', views.CurrentUserView.as_view(), name='current_user'), 
 ]
