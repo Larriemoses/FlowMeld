@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-
+from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     # Third-party apps
     'rest_framework',         # Django REST Framework
     'corsheaders',            # For Cross-Origin Resource Sharing (CORS)
-    'channels',               # For real-time features (WebSockets)
+    'channels',    
+    'rest_framework_simplejwt',           # For real-time features (WebSockets)
 
     # Your apps
     'core',                   # Your core application
@@ -50,7 +51,7 @@ INSTALLED_APPS = [
 # --- Middleware Configuration ---
 # CORS middleware must be placed very high, preferably first or second.
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # <--- Add this FIRST
+    'corsheaders.middleware.CorsMiddleware', # <--- THIS MUST BE THE VERY FIRST ITEM!
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -137,14 +138,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # --- CORS Headers Configuration ---
 # Specify allowed origins for your frontend application.
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Your React development server
-    "http://127.0.0.1:3000",  # Another common local dev address
-    # Add your frontend production domain here when deploying to Render!
-    # E.g., "https://your-flowmeld-frontend.onrender.com",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
 
-# If you need to allow all origins for very early development, use this (less secure):
-# CORS_ALLOW_ALL_ORIGINS = True # Comment out CORS_ALLOWED_ORIGINS if you enable this.
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173", # <--- ADD THIS LINE!
+    "http://127.0.0.1:5173", # <--- ADD THIS LINE!
+    # Add your frontend production domain here when deploying!
+    # E.g., "https://your-flowmeld-frontend.onrender.com",
+]
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -170,12 +177,15 @@ CORS_ALLOW_HEADERS = [
 # --- Django REST Framework (DRF) Configuration ---
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+        # Remove SessionAuthentication and BasicAuthentication for API clients
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
         # 'rest_framework_simplejwt.authentication.JWTAuthentication', # Will add later for token auth
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny', # Allow any user for now, tighten later
+         'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.AllowAny', # Allow any user for now, tighten later
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
@@ -197,3 +207,12 @@ CHANNEL_LAYERS = {
 # Redirect URLs after login/logout (for Django's default auth views)
 LOGIN_REDIRECT_URL = '/api/' # Redirect to the API root after login
 LOGOUT_REDIRECT_URL = '/'    # Redirect to the site root after logout (or login page)
+
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60), # Access token valid for 60 minutes
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),   # Refresh token valid for 1 day
+    'ROTATE_REFRESH_TOKENS': True, # Refresh token rotates with new access token
+    'BLACKLIST_AFTER_ROTATION': True, # Old refresh tokens are blacklisted
+                                      # (Optional: specify JWT algorithm and keys if needed)
+}
