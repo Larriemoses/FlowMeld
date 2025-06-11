@@ -4,9 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
-// Remove the getCookie helper function from here as it's no longer needed for JWT login
-// function getCookie(name: string) { ... }
-
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
