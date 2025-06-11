@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react'; // useEffect is still needed
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// Remove the getCookie helper function from here
-// function getCookie(name: string) { ... }
 
 const RegisterPage: React.FC = () => {
   const [username, setUsername] = useState('');
