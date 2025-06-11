@@ -1,4 +1,4 @@
-// frontend/src/pages/DashboardPage.tsx
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth, ACCENT_COLORS } from '../context/AuthContext';
