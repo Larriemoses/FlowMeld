@@ -48,7 +48,7 @@ const DashboardPage: React.FC = () => {
         w-64 flex-shrink-0 bg-slate-900 flex flex-col justify-between border-r ${themeClasses.borderCard} z-50 {/* Sidebar always dark */}
         md:flex
       `}>
-        {/* Sidebar Content */}
+       
         <div className="flex flex-col justify-between h-full">
           {/* Top Section - Logo & Main Nav */}
           <div className="p-6">
