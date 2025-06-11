@@ -24,11 +24,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setError(null);
 
-    // Remove console.log for cookies as we no longer rely on them for auth
-    // console.log('Cookies before POST request (in handleSubmit):', document.cookie);
-    // Remove getCookie call as it's not needed for JWT
-    // const csrfToken = getCookie('csrftoken');
-
+  
     try {
       const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
