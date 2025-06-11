@@ -25,10 +25,6 @@ const RegisterPage: React.FC = () => {
     setError(null);
     setSuccess(null);
 
-    // Remove console.logs for cookies and getCookie call
-    // console.log('Cookies before POST request (in handleSubmit):', document.cookie);
-    // const csrfToken = getCookie('csrftoken');
-
     try {
       const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
