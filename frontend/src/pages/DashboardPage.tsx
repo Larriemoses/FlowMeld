@@ -27,7 +27,7 @@ const DashboardPage: React.FC = () => {
     ? `https://ui-avatars.com/api/?name=${encodeURIComponent(user.username)}&background=334155&color=E2E8F0`
     : 'https://via.placeholder.com/40/334155/E2E8F0?text=FL';
 
-  // Get theme-specific classes
+  
   const themeClasses = getThemeClasses(theme);
 
   return (
