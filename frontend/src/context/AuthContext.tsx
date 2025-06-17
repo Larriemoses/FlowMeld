@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext, useEffect, type ReactNode, 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// Define the list of available accent colors
+
 export const ACCENT_COLORS = [
   'cyan', 'blue', 'indigo', 'purple', 'fuchsia', 'rose', 'orange', 'lime', 'emerald', 'teal'
 ] as const;
