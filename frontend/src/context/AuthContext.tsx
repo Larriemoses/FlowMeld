@@ -1,5 +1,5 @@
 // frontend/src/context/AuthContext.tsx
-import React, { createContext, useState, useContext, useEffect, type ReactNode, useCallback } from 'react'; // <--- Added 'type' keyword for ReactNode here!
+import React, { createContext, useState, useContext, useEffect, type ReactNode, useCallback } from 'react'; 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
