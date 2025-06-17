@@ -15,7 +15,7 @@ interface AuthContextType {
   refreshToken: string | null;
   isAuthenticated: boolean;
   user: { username: string; email: string } | null;
-  theme: 'light' | 'dark'; // Theme state
+  theme: 'light' | 'dark'; 
   accentColor: AccentColor; // Accent color state
   login: (access: string, refresh: string) => void;
   logout: () => void;
