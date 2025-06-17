@@ -21,7 +21,7 @@ interface AuthContextType {
   logout: () => void;
   fetchUser: () => Promise<void>;
   setTheme: (theme: 'light' | 'dark') => void; // Function to set theme
-  setAccentColor: (color: AccentColor) => void; // Function to set accent color
+  setAccentColor: (color: AccentColor) => void; 
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
