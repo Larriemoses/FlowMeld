@@ -8,7 +8,6 @@ export const ACCENT_COLORS = [
   'cyan', 'blue', 'indigo', 'purple', 'fuchsia', 'rose', 'orange', 'lime', 'emerald', 'teal'
 ] as const;
 
-// Make the AccentColor type a standalone export for clarity
 export type AccentColor = typeof ACCENT_COLORS[number];
 
 interface AuthContextType {
