@@ -16,7 +16,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   user: { username: string; email: string } | null;
   theme: 'light' | 'dark'; 
-  accentColor: AccentColor; // Accent color state
+  accentColor: AccentColor; 
   login: (access: string, refresh: string) => void;
   logout: () => void;
   fetchUser: () => Promise<void>;
