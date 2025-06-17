@@ -20,7 +20,7 @@ interface AuthContextType {
   login: (access: string, refresh: string) => void;
   logout: () => void;
   fetchUser: () => Promise<void>;
-  setTheme: (theme: 'light' | 'dark') => void; // Function to set theme
+  setTheme: (theme: 'light' | 'dark') => void; 
   setAccentColor: (color: AccentColor) => void; 
 }
 
