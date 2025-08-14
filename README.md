@@ -51,7 +51,8 @@ FlowMeld is a groundbreaking AI-powered platform designed to revolutionize produ
 
 ### Prerequisites
 
-- Node.js >= XX.X.X (for frontend)
+- React.js >= XX.X.X (for frontend)
+- TailwindCSS (for Styling)
 - Python 3.9+ (for backend)
 - PostgreSQL (database)
 
